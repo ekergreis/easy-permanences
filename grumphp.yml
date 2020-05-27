@@ -5,4 +5,4 @@ parameters:
         phpmd:
             whitelist_patterns: [src/*]
         phpstan:
-            force_patterns: [src/*]
+            level: 0
