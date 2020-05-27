@@ -59,14 +59,14 @@ class Group
     }
 
     /**
-     * @return Collection|user[]
+     * @return Collection|User[]
      */
     public function getUserGroup(): Collection
     {
         return $this->user_group;
     }
 
-    public function addUserGroup(user $userGroup): self
+    public function addUserGroup(User $userGroup): self
     {
         if (!$this->user_group->contains($userGroup)) {
             $this->user_group[] = $userGroup;
@@ -76,7 +76,7 @@ class Group
         return $this;
     }
 
-    public function removeUserGroup(user $userGroup): self
+    public function removeUserGroup(User $userGroup): self
     {
         if ($this->user_group->contains($userGroup)) {
             $this->user_group->removeElement($userGroup);
@@ -101,7 +101,7 @@ class Group
     {
         if (!$this->permanences->contains($permanences)) {
             $this->permanences[] = $permanences;
-            $permanences->setGroupPermanences($this);
+            $permanences->setGroupPermanence($this);
         }
 
         return $this;
@@ -112,8 +112,8 @@ class Group
         if ($this->permanences->contains($permanences)) {
             $this->permanences->removeElement($permanences);
             // set the owning side to null (unless already changed)
-            if ($permanences->getGroupPermanences() === $this) {
-                $permanences->setGroupPermanences(null);
+            if ($permanences->getGroupPermanence() === $this) {
+                $permanences->setGroupPermanence(null);
             }
         }
 

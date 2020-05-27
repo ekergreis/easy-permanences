@@ -143,27 +143,4 @@ class Permanence
     {
         return $this->echangePropos;
     }
-
-    public function addEchangePropo(EchangePropos $echangePropo): self
-    {
-        if (!$this->echangePropos->contains($echangePropo)) {
-            $this->echangePropos[] = $echangePropo;
-            $echangePropo->setEchange($this);
-        }
-
-        return $this;
-    }
-
-    public function removeEchangePropo(EchangePropos $echangePropo): self
-    {
-        if ($this->echangePropos->contains($echangePropo)) {
-            $this->echangePropos->removeElement($echangePropo);
-            // set the owning side to null (unless already changed)
-            if ($echangePropo->getEchange() === $this) {
-                $echangePropo->setEchange(null);
-            }
-        }
-
-        return $this;
-    }
 }

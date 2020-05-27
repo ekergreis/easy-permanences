@@ -3,3 +3,5 @@ parameters:
         - src/Migrations
     paths:
     	- src
+    excludes_analyse:
+        - tests

@@ -5,4 +5,4 @@ parameters:
         phpmd:
             whitelist_patterns: [src/*]
         phpstan:
-            level: 0
+            level: 8
