@@ -1,2 +1,8 @@
 parameters:
-    tasks: { phpcs: null, phpmd: null, phpstan: null }
+    tasks:
+        phpcs:
+            whitelist_patterns: [src/*]
+        phpmd:
+            whitelist_patterns: [src/*]
+        phpstan:
+            force_patterns: [src/*]
