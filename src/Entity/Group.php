@@ -6,10 +6,12 @@ use App\Repository\GroupRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GroupRepository::class)
  * @ORM\Table(name="`group`")
+ * @UniqueEntity("nom", message="entity.groupe.unique")
  */
 class Group
 {
@@ -26,12 +28,12 @@ class Group
     private $nom;
 
     /**
-     * @ORM\OneToMany(targetEntity=user::class, mappedBy="anim_group")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="anim_group")
      */
     private $user_group;
 
     /**
-     * @ORM\OneToMany(targetEntity=permanence::class, mappedBy="group_permanence")
+     * @ORM\OneToMany(targetEntity=Permanence::class, mappedBy="group_permanence")
      */
     private $permanences;
 

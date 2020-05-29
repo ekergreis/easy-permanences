@@ -25,7 +25,7 @@ class Permanence
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="user_permanence")
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="permanences")
      */
     private $group_permanence;
 
