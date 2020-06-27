@@ -39,11 +39,6 @@ class Permanence
      */
     private $echanges;
 
-    /**
-     * @ORM\OneToMany(targetEntity=EchangePropos::class, mappedBy="echange", orphanRemoval=true)
-     */
-    private $echangePropos;
-
     public function __construct()
     {
         $this->user_permanence = new ArrayCollection();
@@ -142,5 +137,10 @@ class Permanence
     public function getEchangePropos(): Collection
     {
         return $this->echangePropos;
+    }
+
+    public function __toString()
+    {
+        return $this->getDate()->format('d/m/Y');
     }
 }
