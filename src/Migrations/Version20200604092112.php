@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200529083643 extends AbstractMigration
+final class Version20200604092112 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,7 +23,7 @@ final class Version20200529083643 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE echange (id INT AUTO_INCREMENT NOT NULL, permanence_id INT NOT NULL, user_id INT NOT NULL, code_validate VARCHAR(255) NOT NULL, resolue TINYINT(1) DEFAULT \'0\' NOT NULL, created_at DATE NOT NULL, INDEX IDX_B577E3BFA9457964 (permanence_id), INDEX IDX_B577E3BFA76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE echange_propos (id INT AUTO_INCREMENT NOT NULL, echange_id INT NOT NULL, permanence_id INT NOT NULL, user_id INT NOT NULL, code_validate VARCHAR(255) NOT NULL, created_at DATE NOT NULL, INDEX IDX_FBAFF4B713713818 (echange_id), INDEX IDX_FBAFF4B7A9457964 (permanence_id), INDEX IDX_FBAFF4B7A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE echange_propos (id INT AUTO_INCREMENT NOT NULL, echange_id INT NOT NULL, user_id INT NOT NULL, code_validate VARCHAR(255) NOT NULL, created_at DATE NOT NULL, INDEX IDX_FBAFF4B713713818 (echange_id), INDEX IDX_FBAFF4B7A76ED395 (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE `group` (id INT AUTO_INCREMENT NOT NULL, nom VARCHAR(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE permanence (id INT AUTO_INCREMENT NOT NULL, group_permanence_id INT DEFAULT NULL, date DATE NOT NULL, INDEX IDX_DF30CBB6F6ACB726 (group_permanence_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE permanence_user (permanence_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_CCB60EA1A9457964 (permanence_id), INDEX IDX_CCB60EA1A76ED395 (user_id), PRIMARY KEY(permanence_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -31,7 +31,6 @@ final class Version20200529083643 extends AbstractMigration
         $this->addSql('ALTER TABLE echange ADD CONSTRAINT FK_B577E3BFA9457964 FOREIGN KEY (permanence_id) REFERENCES permanence (id)');
         $this->addSql('ALTER TABLE echange ADD CONSTRAINT FK_B577E3BFA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE echange_propos ADD CONSTRAINT FK_FBAFF4B713713818 FOREIGN KEY (echange_id) REFERENCES echange (id)');
-        $this->addSql('ALTER TABLE echange_propos ADD CONSTRAINT FK_FBAFF4B7A9457964 FOREIGN KEY (permanence_id) REFERENCES permanence (id)');
         $this->addSql('ALTER TABLE echange_propos ADD CONSTRAINT FK_FBAFF4B7A76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE permanence ADD CONSTRAINT FK_DF30CBB6F6ACB726 FOREIGN KEY (group_permanence_id) REFERENCES `group` (id)');
         $this->addSql('ALTER TABLE permanence_user ADD CONSTRAINT FK_CCB60EA1A9457964 FOREIGN KEY (permanence_id) REFERENCES permanence (id) ON DELETE CASCADE');
@@ -48,7 +47,6 @@ final class Version20200529083643 extends AbstractMigration
         $this->addSql('ALTER TABLE permanence DROP FOREIGN KEY FK_DF30CBB6F6ACB726');
         $this->addSql('ALTER TABLE user DROP FOREIGN KEY FK_8D93D649246F55BB');
         $this->addSql('ALTER TABLE echange DROP FOREIGN KEY FK_B577E3BFA9457964');
-        $this->addSql('ALTER TABLE echange_propos DROP FOREIGN KEY FK_FBAFF4B7A9457964');
         $this->addSql('ALTER TABLE permanence_user DROP FOREIGN KEY FK_CCB60EA1A9457964');
         $this->addSql('ALTER TABLE echange DROP FOREIGN KEY FK_B577E3BFA76ED395');
         $this->addSql('ALTER TABLE echange_propos DROP FOREIGN KEY FK_FBAFF4B7A76ED395');

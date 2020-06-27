@@ -24,12 +24,6 @@ class EchangePropos
     private $echange;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Permanence::class)
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $permanence;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="echangePropos")
      * @ORM\JoinColumn(nullable=false)
      */
@@ -58,18 +52,6 @@ class EchangePropos
     public function setEchange(?Echange $echange): self
     {
         $this->echange = $echange;
-
-        return $this;
-    }
-
-    public function getPermanence(): ?Permanence
-    {
-        return $this->permanence;
-    }
-
-    public function setPermanence(?Permanence $permanence): self
-    {
-        $this->permanence = $permanence;
 
         return $this;
     }
