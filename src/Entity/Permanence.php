@@ -131,14 +131,6 @@ class Permanence
         return $this;
     }
 
-    /**
-     * @return Collection|EchangePropos[]
-     */
-    public function getEchangePropos(): Collection
-    {
-        return $this->echangePropos;
-    }
-
     public function __toString()
     {
         return $this->getDate()->format('d/m/Y');
