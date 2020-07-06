@@ -39,5 +39,6 @@ class PermanenceCrudController extends AbstractCrudController
         } elseif (Crud::PAGE_EDIT === $pageName) {
             return [$date, $groupPermanence];
         }
+        return [];
     }
 }

@@ -52,5 +52,6 @@ class AffectUserCrudController extends AbstractCrudController
         } elseif (Crud::PAGE_EDIT === $pageName) {
             return [$nom, $mail, $animGroup];
         }
+        return [];
     }
 }

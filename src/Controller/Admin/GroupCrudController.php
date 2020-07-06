@@ -38,5 +38,6 @@ class GroupCrudController extends AbstractCrudController
         } elseif (Crud::PAGE_EDIT === $pageName) {
             return [$nom];
         }
+        return [];
     }
 }
