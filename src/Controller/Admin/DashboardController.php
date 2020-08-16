@@ -29,7 +29,7 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Configuration Permanences');
+            ->setTitle('Configuration Easy Permanences');
     }
 
     public function configureCrud(): Crud
@@ -39,9 +39,9 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-folder-open', User::class);
-        yield MenuItem::linkToCrud('Groupes', 'fas fa-folder-open', Group::class);
-        yield MenuItem::linkToCrud('Animateurs réguliers / Groupes', 'fas fa-folder-open', User::class);
-        yield MenuItem::linkToCrud('Permanences', 'fas fa-folder-open', Permanence::class);
+        yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
+        yield MenuItem::linkToCrud('Groupes', 'fas fa-users', Group::class);
+        yield MenuItem::linkToCrud('Animateurs réguliers', 'fas fa-star', User::class)->setController(AffectUserCrudController::class);
+        yield MenuItem::linkToCrud('Permanences', 'fas fa-calendar', Permanence::class);
     }
 }

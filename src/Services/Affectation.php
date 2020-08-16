@@ -42,14 +42,15 @@ class Affectation
         $uow->computeChangeSets();
         $entityChangeSet = $uow->getEntityChangeSet($user);
 
-        if(!empty($entityChangeSet['anim_group'])) {
-            $oldGroup = $entityChangeSet['anim_group'][0]->getId();
-            if($oldGroup) {
-                // Recherche des permanences de l'ancien group du user
-                $permanences = $this->em->getRepository(Permanence::class)->findBy(['group_permanence' => $oldGroup->getId()]);
-                foreach ($permanences as $permanence) {
-                    $this->delUserPermanence($user, $permanence);
-                }
+        $oldGroupToRemove = null;
+        if(!empty($entityChangeSet['anim_group'])) $oldGroupToRemove = $entityChangeSet['anim_group'][0];
+        if(!empty($entityChangeSet['anim_regulier']) && $entityChangeSet['anim_regulier'][1]==false) $oldGroupToRemove = $user->getAnimGroup();
+
+        if(!empty($oldGroupToRemove)) {
+            // Recherche des permanences de l'ancien group du user
+            $permanences = $this->em->getRepository(Permanence::class)->findBy(['group_permanence' => $oldGroupToRemove->getId()]);
+            foreach ($permanences as $permanence) {
+                $this->delUserPermanence($user, $permanence);
             }
         }
     }
