@@ -2,8 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e838cde-003f-493e-aaec-e1fcdacd6d6a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/app.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/hautelook_alice.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/nelmio_alice.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/hautelook_alice.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/test/nelmio_alice.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixtures/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixtures/group.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixtures/permanences.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/fixtures/user.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DataFixtures/Faker/CustomProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DependencyInjection/AppExtension.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DependencyInjection/Configuration.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_02_08_2020_20_50.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_02_08_2020_20_50.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/commandlinetools/Symfony_24_10_2020_12_42.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/permanences.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/permanences.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
@@ -12,6 +27,7 @@
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/phpstan.neon" beforeDir="false" afterPath="$PROJECT_DIR$/phpstan.neon" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AdminController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AffectUserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AffectUserCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/GroupCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/GroupCrudController.php" afterDir="false" />
@@ -24,7 +40,7 @@
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/EventSubscriber/AdminEventSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventSubscriber/AdminEventSubscriber.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20200604092112.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20200604092112.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20201024121939.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Services/Affectation.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Services/Affectation.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
@@ -211,7 +227,7 @@
       <updated>1603536145114</updated>
       <workItem from="1603536146504" duration="67000" />
       <workItem from="1603536224051" duration="11137000" />
-      <workItem from="1603636267974" duration="488000" />
+      <workItem from="1603636267974" duration="1340000" />
     </task>
     <servers />
   </component>

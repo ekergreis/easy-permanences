@@ -39,7 +39,7 @@ class Group
 
     public function __construct()
     {
-        $this->userGroup = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->permanences = new ArrayCollection();
     }
 

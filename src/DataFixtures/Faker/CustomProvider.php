@@ -22,11 +22,11 @@ class CustomProvider
      * Retourne un entier aléatoire entre 1 et le nombre passé en paramètre
      * Permet de compenser le bug nelmio/alice
      * de passage de 2 paramètres dans une méthode custom
-     * @param $maxId
+     * @param int $maxId
      * @return int
      * @throws \Exception
      */
-    public function customRandomNumber($maxId): int
+    public function customRandomNumber(int $maxId): int
     {
         return random_int(1, $maxId);
     }

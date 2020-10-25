@@ -113,18 +113,16 @@ class Affectation
      */
     public function removeGroup(Group $group): void
     {
-        if ($group) {
-            // Recherche des users et permanences du group
-            foreach ($group->getUsers() as $user) {
-                foreach ($group->getPermanences() as $permanence) {
-                    $this->removeUserPermanence($user, $permanence);
-                }
-                $group->removeUsers($user);
-            }
-
+        // Recherche des users et permanences du group
+        foreach ($group->getUsers() as $user) {
             foreach ($group->getPermanences() as $permanence) {
-                $group->removePermanences($permanence);
+                $this->removeUserPermanence($user, $permanence);
             }
+            $group->removeUsers($user);
+        }
+
+        foreach ($group->getPermanences() as $permanence) {
+            $group->removePermanences($permanence);
         }
     }
 
