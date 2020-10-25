@@ -32,12 +32,12 @@ class EchangePropos
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $code_validate;
+    private $codeValidate;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $created_at;
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -70,24 +70,24 @@ class EchangePropos
 
     public function getCodeValidate(): ?string
     {
-        return $this->code_validate;
+        return $this->codeValidate;
     }
 
-    public function setCodeValidate(string $code_validate): self
+    public function setCodeValidate(string $codeValidate): self
     {
-        $this->code_validate = $code_validate;
+        $this->codeValidate = $codeValidate;
 
         return $this;
     }
 
     public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->created_at;
+        return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->created_at = $created_at;
+        $this->createdAt = $createdAt;
 
         return $this;
     }

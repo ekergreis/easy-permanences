@@ -27,12 +27,12 @@ class Permanence
     /**
      * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="permanences")
      */
-    private $group_permanence;
+    private $group;
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, inversedBy="permanences")
      */
-    private $user_permanence;
+    private $users;
 
     /**
      * @ORM\OneToMany(targetEntity=Echange::class, mappedBy="permanence", orphanRemoval=true)
@@ -41,7 +41,7 @@ class Permanence
 
     public function __construct()
     {
-        $this->user_permanence = new ArrayCollection();
+        $this->users = new ArrayCollection();
         $this->echanges = new ArrayCollection();
     }
 
@@ -62,14 +62,14 @@ class Permanence
         return $this;
     }
 
-    public function getGroupPermanence(): ?Group
+    public function getGroup(): ?Group
     {
-        return $this->group_permanence;
+        return $this->group;
     }
 
-    public function setGroupPermanence(?Group $group_permanence): self
+    public function setGroup(?Group $group): self
     {
-        $this->group_permanence = $group_permanence;
+        $this->group = $group;
 
         return $this;
     }
@@ -77,24 +77,24 @@ class Permanence
     /**
      * @return Collection|User[]
      */
-    public function getUserPermanence(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user_permanence;
+        return $this->users;
     }
 
-    public function addUserPermanence(User $userPermanence): self
+    public function addUsers(User $user): self
     {
-        if (!$this->user_permanence->contains($userPermanence)) {
-            $this->user_permanence[] = $userPermanence;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
         }
 
         return $this;
     }
 
-    public function removeUserPermanence(User $userPermanence): self
+    public function removeUsers(User $user): self
     {
-        if ($this->user_permanence->contains($userPermanence)) {
-            $this->user_permanence->removeElement($userPermanence);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
         }
 
         return $this;

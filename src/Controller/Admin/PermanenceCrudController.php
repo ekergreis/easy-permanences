@@ -38,17 +38,17 @@ class PermanenceCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $date = DateField::new('date');
-        $groupPermanence = AssociationField::new('group_permanence', 'Groupe animateurs');
+        $group = AssociationField::new('group', 'Groupe animateurs');
         // $id = IntegerField::new('id', 'ID');
-        // $userPermanence = AssociationField::new('user_permanence');
+        $users = AssociationField::new('users', 'Nb Animateurs');
         // $echanges = AssociationField::new('echanges');
 
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$date, $groupPermanence];
+            return [$date, $group, $users];
         } elseif (Crud::PAGE_NEW === $pageName) {
-            return [$date, $groupPermanence];
+            return [$date, $group];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$date, $groupPermanence];
+            return [$date, $group];
         }
         return [];
     }

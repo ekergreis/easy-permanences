@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.symfony" name="Symfony_02/08/2020 20:50" invoke="7fcf989d-5aed-4ea8-8ba2-54fb3cbf074b C:/http/permanences/bin/console" alias="symfony" enabled="true" version="2">
+<framework xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schemas/frameworkDescriptionVersion1.1.4.xsd" frameworkId="com.symfony" name="Symfony_24/10/2020 12:42" invoke="7fcf989d-5aed-4ea8-8ba2-54fb3cbf074b C:/http/permanences/bin/console" alias="symfony" enabled="true" version="2">
   <extraData><![CDATA[version:3]]></extraData>
   <command>
     <name>about</name>
@@ -2153,6 +2153,57 @@
       </option>
       <option name="--em" shortcut="" pattern="equals">
         <help><![CDATA[The entity manager to use for this command]]></help>
+      </option>
+      <option name="--help" shortcut="-h">
+        <help><![CDATA[Display this help message]]></help>
+      </option>
+      <option name="--quiet" shortcut="-q">
+        <help><![CDATA[Do not output any message]]></help>
+      </option>
+      <option name="--verbose" shortcut="-v">
+        <help><![CDATA[Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug]]></help>
+      </option>
+      <option name="--version" shortcut="-V">
+        <help><![CDATA[Display this application version]]></help>
+      </option>
+      <option name="--ansi" shortcut="">
+        <help><![CDATA[Force ANSI output]]></help>
+      </option>
+      <option name="--no-ansi" shortcut="">
+        <help><![CDATA[Disable ANSI output]]></help>
+      </option>
+      <option name="--no-interaction" shortcut="-n">
+        <help><![CDATA[Do not ask any interactive question]]></help>
+      </option>
+      <option name="--env" shortcut="-e" pattern="equals">
+        <help><![CDATA[The Environment name.]]></help>
+      </option>
+      <option name="--no-debug" shortcut="">
+        <help><![CDATA[Switches off debug mode.]]></help>
+      </option>
+    </optionsBefore>
+  </command>
+  <command>
+    <name>hautelook:fixtures:load</name>
+    <help><![CDATA[Load data fixtures to your database.<br/><br/><table> <tr><td><strong>Options:</strong></td></tr> <tr><td>--bundle</td><td>(-b)</td><td>Bundles where fixtures should be loaded.</td></tr> <tr><td>--no-bundles</td><td></td><td>Fixtures from bundles will not be loaded.</td></tr> <tr><td>--manager</td><td>(-m)</td><td>The entity manager to use for this command. If not specified, use the default Doctrine fixtures entitymanager.</td></tr> <tr><td>--append</td><td></td><td>Append the data fixtures instead of deleting all data from the database first.</td></tr> <tr><td>--shard</td><td></td><td>The shard database id to use for this command.</td></tr> <tr><td>--purge-with-truncate</td><td></td><td>Purge data by using a database-level TRUNCATE statement when using Doctrine fixtures.</td></tr> <tr><td>--help</td><td>(-h)</td><td>Display this help message</td></tr> <tr><td>--quiet</td><td>(-q)</td><td>Do not output any message</td></tr> <tr><td>--verbose</td><td>(-v)</td><td>Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug</td></tr> <tr><td>--version</td><td>(-V)</td><td>Display this application version</td></tr> <tr><td>--ansi</td><td></td><td>Force ANSI output</td></tr> <tr><td>--no-ansi</td><td></td><td>Disable ANSI output</td></tr> <tr><td>--no-interaction</td><td>(-n)</td><td>Do not ask any interactive question</td></tr> <tr><td>--env</td><td>(-e)</td><td>The Environment name.</td></tr> <tr><td>--no-debug</td><td></td><td>Switches off debug mode.</td></tr> </table> <br/>]]></help>
+    <optionsBefore>
+      <option name="--bundle" shortcut="-b" pattern="equals">
+        <help><![CDATA[Bundles where fixtures should be loaded.]]></help>
+      </option>
+      <option name="--no-bundles" shortcut="" pattern="equals">
+        <help><![CDATA[Fixtures from bundles will not be loaded.]]></help>
+      </option>
+      <option name="--manager" shortcut="-m" pattern="equals">
+        <help><![CDATA[The entity manager to use for this command. If not specified, use the default Doctrine fixtures entitymanager.]]></help>
+      </option>
+      <option name="--append" shortcut="">
+        <help><![CDATA[Append the data fixtures instead of deleting all data from the database first.]]></help>
+      </option>
+      <option name="--shard" shortcut="" pattern="equals">
+        <help><![CDATA[The shard database id to use for this command.]]></help>
+      </option>
+      <option name="--purge-with-truncate" shortcut="">
+        <help><![CDATA[Purge data by using a database-level TRUNCATE statement when using Doctrine fixtures.]]></help>
       </option>
       <option name="--help" shortcut="-h">
         <help><![CDATA[Display this help message]]></help>

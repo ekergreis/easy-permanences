@@ -1,0 +1,8 @@
+App\Entity\User:
+  user_{1..40}:
+    login: <( substr( md5( uniqid( rand(), true ) ) , 0, 4) )>
+    password: <( substr( md5( uniqid( rand(), true ) ) , 0, 4) )>
+    name: '<firstName()> <lastName()>'
+    mail: <email()>
+    animRegulier: <boolean()>
+    group: <groupPourAnimReguliers($animRegulier, @group_<customRandomNumber(4)>)>

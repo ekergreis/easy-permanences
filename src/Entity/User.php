@@ -33,7 +33,7 @@ class User
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $nom;
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -43,15 +43,15 @@ class User
     /**
      * @ORM\Column(type="boolean", options={"default":0})
      */
-    private $anim_regulier;
+    private $animRegulier;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="user_group")
+     * @ORM\ManyToOne(targetEntity=Group::class, inversedBy="users")
      */
-    private $anim_group;
+    private $group;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Permanence::class, mappedBy="user_permanence")
+     * @ORM\ManyToMany(targetEntity=Permanence::class, mappedBy="users")
      */
     private $permanences;
 
@@ -102,17 +102,17 @@ class User
     /**
      * @return mixed
      */
-    public function getNom()
+    public function getName()
     {
-        return $this->nom;
+        return $this->name;
     }
 
     /**
-     * @param mixed $nom
+     * @param mixed $name
      */
-    public function setNom($nom): self
+    public function setName($name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
         return $this;
     }
 
@@ -135,23 +135,23 @@ class User
 
     public function getAnimRegulier(): ?bool
     {
-        return $this->anim_regulier;
+        return $this->animRegulier;
     }
 
-    public function setAnimRegulier(bool $anim_regulier): self
+    public function setAnimRegulier(bool $animRegulier): self
     {
-        $this->anim_regulier = $anim_regulier;
+        $this->animRegulier = $animRegulier;
         return $this;
     }
 
-    public function getAnimGroup(): ?Group
+    public function getGroup(): ?Group
     {
-        return $this->anim_group;
+        return $this->group;
     }
 
-    public function setAnimGroup(?Group $anim_group): self
+    public function setGroup(?Group $group): self
     {
-        $this->anim_group = $anim_group;
+        $this->group = $group;
 
         return $this;
     }
@@ -168,7 +168,7 @@ class User
     {
         if (!$this->permanences->contains($permanence)) {
             $this->permanences[] = $permanence;
-            $permanence->addUserPermanence($this);
+            $permanence->addUsers($this);
         }
 
         return $this;
@@ -178,7 +178,7 @@ class User
     {
         if ($this->permanences->contains($permanence)) {
             $this->permanences->removeElement($permanence);
-            $permanence->removeUserPermanence($this);
+            $permanence->removeUsers($this);
         }
 
         return $this;
@@ -248,7 +248,6 @@ class User
 
     public function __toString()
     {
-        return $this->getNom();
+        return $this->getName();
     }
 }
-

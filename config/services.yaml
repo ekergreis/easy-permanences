@@ -25,8 +25,12 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
     app.affectation:
         class: App\Services\Affectation
         arguments:
             $em: '@doctrine.orm.entity_manager'
         public: true
+
+    App\DataFixtures\Faker\CustomProvider:
+        tags: [ { name: nelmio_alice.faker.provider } ]

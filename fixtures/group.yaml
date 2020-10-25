@@ -1,0 +1,9 @@
+App\Entity\Group:
+  group_1:
+    name: "A"
+  group_2:
+    name: "B"
+  group_3:
+    name: "C"
+  group_4:
+    name: "D"

@@ -39,7 +39,7 @@ class Echange
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $code_validate;
+    private $codeValidate;
 
     /**
      * @ORM\Column(type="boolean", options={"default":0})
@@ -118,12 +118,12 @@ class Echange
 
     public function getCodeValidate(): ?string
     {
-        return $this->code_validate;
+        return $this->codeValidate;
     }
 
-    public function setCodeValidate(string $code_validate): self
+    public function setCodeValidate(string $codeValidate): self
     {
-        $this->code_validate = $code_validate;
+        $this->codeValidate = $codeValidate;
 
         return $this;
     }

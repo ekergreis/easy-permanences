@@ -19,7 +19,7 @@
         "symfony/intl": "4.4.*",
         "symfony/mailer": "4.4.*",
         "symfony/monolog-bundle": "^3.1",
-        "symfony/orm-pack": "*",
+        "symfony/orm-pack": "^2.0",
         "symfony/process": "4.4.*",
         "symfony/security-bundle": "4.4.*",
         "symfony/serializer-pack": "*",
@@ -31,6 +31,8 @@
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
+        "hautelook/alice-bundle": "^2.7",
+        "nelmio/alice": "^3.6",
         "phploc/phploc": "^5.0",
         "phpmd/phpmd": "^2.8",
         "phpro/grumphp": "^0.18.1",

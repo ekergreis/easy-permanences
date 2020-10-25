@@ -40,14 +40,14 @@ class GroupCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $id = IdField::new('id')->hideOnIndex();
-        $nom = TextField::new('nom');
-        $userGroup = AssociationField::new('user_group');
+        $nom = TextField::new('name', 'Intitulé');
+        $users = AssociationField::new('users');
         $permanences = AssociationField::new('permanences');
 
         if (Crud::PAGE_INDEX === $pageName) {
             return [$nom];
         } elseif (Crud::PAGE_DETAIL === $pageName) {
-            return [$id, $nom, $userGroup, $permanences];
+            return [$id, $nom, $users, $permanences];
         } elseif (Crud::PAGE_NEW === $pageName) {
             return [$nom];
         } elseif (Crud::PAGE_EDIT === $pageName) {

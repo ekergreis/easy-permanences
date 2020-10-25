@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=GroupRepository::class)
  * @ORM\Table(name="`group`")
- * @UniqueEntity("nom", message="entity.groupe.unique")
+ * @UniqueEntity("name", message="entity.groupe.unique")
  */
 class Group
 {
@@ -25,21 +25,21 @@ class Group
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $nom;
+    private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity=User::class, mappedBy="anim_group")
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="group")
      */
-    private $user_group;
+    private $users;
 
     /**
-     * @ORM\OneToMany(targetEntity=Permanence::class, mappedBy="group_permanence")
+     * @ORM\OneToMany(targetEntity=Permanence::class, mappedBy="group")
      */
     private $permanences;
 
     public function __construct()
     {
-        $this->user_group = new ArrayCollection();
+        $this->userGroup = new ArrayCollection();
         $this->permanences = new ArrayCollection();
     }
 
@@ -48,14 +48,14 @@ class Group
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -63,28 +63,28 @@ class Group
     /**
      * @return Collection|User[]
      */
-    public function getUserGroup(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user_group;
+        return $this->users;
     }
 
-    public function addUserGroup(User $userGroup): self
+    public function addUsers(User $user): self
     {
-        if (!$this->user_group->contains($userGroup)) {
-            $this->user_group[] = $userGroup;
-            $userGroup->setAnimGroup($this);
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setGroup($this);
         }
 
         return $this;
     }
 
-    public function removeUserGroup(User $userGroup): self
+    public function removeUsers(User $user): self
     {
-        if ($this->user_group->contains($userGroup)) {
-            $this->user_group->removeElement($userGroup);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($userGroup->getAnimGroup() === $this) {
-                $userGroup->setAnimGroup(null);
+            if ($user->getGroup() === $this) {
+                $user->setGroup(null);
             }
         }
 
@@ -103,7 +103,7 @@ class Group
     {
         if (!$this->permanences->contains($permanences)) {
             $this->permanences[] = $permanences;
-            $permanences->setGroupPermanence($this);
+            $permanences->setGroup($this);
         }
 
         return $this;
@@ -114,8 +114,8 @@ class Group
         if ($this->permanences->contains($permanences)) {
             $this->permanences->removeElement($permanences);
             // set the owning side to null (unless already changed)
-            if ($permanences->getGroupPermanence() === $this) {
-                $permanences->setGroupPermanence(null);
+            if ($permanences->getGroup() === $this) {
+                $permanences->setGroup(null);
             }
         }
 
@@ -124,6 +124,6 @@ class Group
 
     public function __toString()
     {
-        return $this->getNom();
+        return $this->getname();
     }
 }

@@ -39,30 +39,38 @@ class AffectUserCrudController extends AbstractCrudController
             ->disable('new');
     }
 
+    /**
+     * Filtre pour afficher uniquement les animateur réguliers
+     * @param SearchDto $searchDto
+     * @param EntityDto $entityDto
+     * @param FieldCollection $fields
+     * @param FilterCollection $filters
+     * @return QueryBuilder
+     */
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $qb = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $qb->where('entity.anim_regulier = 1');
+        $qb->where('entity.animRegulier = 1');
         return $qb;
     }
 
     public function configureFields(string $pageName): iterable
     {
-        $id = IntegerField::new('id', 'ID');
-        $login = TextField::new('login');
+        // $id = IntegerField::new('id', 'ID');
+        // $login = TextField::new('login');
         // $password = TextField::new('password');
-        $nom = TextField::new('nom');
+        $nom = TextField::new('name', 'nom');
         $mail = TextField::new('mail');
-        $animRegulier = Field::new('anim_regulier');
-        $animGroup = AssociationField::new('anim_group');
-        $permanences = AssociationField::new('permanences');
+        // $animRegulier = Field::new('animRegulier', 'Animateur régulier');
+        $group = AssociationField::new('group');
+        $permanences = AssociationField::new('permanences', 'Nb Permanences');
         // $echanges = AssociationField::new('echanges');
         // $echangePropos = AssociationField::new('echangePropos');
 
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$nom, $mail, $animGroup, $permanences];
+            return [$nom, $mail, $group, $permanences];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$nom, $mail, $animGroup];
+            return [$nom, $mail, $group];
         }
         return [];
     }

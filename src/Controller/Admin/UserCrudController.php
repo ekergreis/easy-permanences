@@ -24,7 +24,7 @@ class UserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Utilisateur')
             ->setEntityLabelInPlural('Utilisateurs')
-            ->setSearchFields(['login', 'nom', 'mail']);
+            ->setSearchFields(['login', 'name', 'mail']);
     }
 
     public function configureActions(Actions $actions): Actions
@@ -41,11 +41,11 @@ class UserCrudController extends AbstractCrudController
         $id = IdField::new('id')->hideOnIndex();
         $login = TextField::new('login', 'Code accès');
         $password = TextField::new('password', 'Mot de passe');
-        $nom = TextField::new('nom', 'Nom');
+        $nom = TextField::new('name', 'Nom');
         $mail = TextField::new('mail');
-        $animRegulier = BooleanField::new('anim_regulier', 'Animateur Réguliers');
+        $animRegulier = BooleanField::new('animRegulier', 'Animateur Réguliers');
         // $animGroup = AssociationField::new('anim_group');
-        $permanences = AssociationField::new('permanences');
+        $permanences = AssociationField::new('permanences', 'Nb Permanences');
         // $echanges = AssociationField::new('echanges');
         // $echangePropos = AssociationField::new('echangePropos');
 
