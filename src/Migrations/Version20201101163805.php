@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20201024121939 extends AbstractMigration
+final class Version20201101163805 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -25,7 +25,7 @@ final class Version20201024121939 extends AbstractMigration
         $this->addSql('CREATE TABLE `group` (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(20) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE permanence (id INT AUTO_INCREMENT NOT NULL, group_id INT DEFAULT NULL, date DATE NOT NULL, INDEX IDX_DF30CBB6FE54D947 (group_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE permanence_user (permanence_id INT NOT NULL, user_id INT NOT NULL, INDEX IDX_CCB60EA1A9457964 (permanence_id), INDEX IDX_CCB60EA1A76ED395 (user_id), PRIMARY KEY(permanence_id, user_id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, group_id INT DEFAULT NULL, login VARCHAR(4) NOT NULL, password VARCHAR(20) NOT NULL, name VARCHAR(100) NOT NULL, mail VARCHAR(100) NOT NULL, anim_regulier TINYINT(1) DEFAULT \'0\' NOT NULL, INDEX IDX_8D93D649FE54D947 (group_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, group_id INT DEFAULT NULL, email VARCHAR(100) NOT NULL, password VARCHAR(255) NOT NULL, roles JSON NOT NULL, name VARCHAR(100) NOT NULL, anim_regulier TINYINT(1) DEFAULT \'0\' NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), INDEX IDX_8D93D649FE54D947 (group_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE echange ADD CONSTRAINT FK_B577E3BFA9457964 FOREIGN KEY (permanence_id) REFERENCES permanence (id)');
         $this->addSql('ALTER TABLE echange ADD CONSTRAINT FK_B577E3BFA76ED395 FOREIGN KEY (user_id) REFERENCES user (id)');
         $this->addSql('ALTER TABLE echange_propos ADD CONSTRAINT FK_FBAFF4B713713818 FOREIGN KEY (echange_id) REFERENCES echange (id)');

@@ -30,7 +30,7 @@ class AffectUserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Utilisateur / Groupe')
             ->setEntityLabelInPlural('Utilisateurs / Groupes')
-            ->setSearchFields(['login', 'nom', 'mail']);
+            ->setSearchFields(['nom', 'email']);
     }
 
     public function configureActions(Actions $actions): Actions
@@ -57,10 +57,9 @@ class AffectUserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         // $id = IntegerField::new('id', 'ID');
-        // $login = TextField::new('login');
+        $email = TextField::new('email', 'E-Mail');
         // $password = TextField::new('password');
         $nom = TextField::new('name', 'nom');
-        $mail = TextField::new('mail');
         // $animRegulier = Field::new('animRegulier', 'Animateur régulier');
         $group = AssociationField::new('group');
         $permanences = AssociationField::new('permanences', 'Nb Permanences');
@@ -68,9 +67,9 @@ class AffectUserCrudController extends AbstractCrudController
         // $echangePropos = AssociationField::new('echangePropos');
 
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$nom, $mail, $group, $permanences];
+            return [$nom, $email, $group, $permanences];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$nom, $mail, $group];
+            return [$nom, $email, $group];
         }
         return [];
     }

@@ -2,9 +2,16 @@
 namespace App\DataFixtures\Faker;
 
 use App\Entity\Group;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomProvider
 {
+    private $encoder;
+
+    public function __construct(UserPasswordEncoderInterface $encoder)
+    {
+        $this->encoder = $encoder;
+    }
 
     /**
      * Retourne le groupe passé en paramètre si l'animateur est régulier
@@ -29,5 +36,16 @@ class CustomProvider
     public function customRandomNumber(int $maxId): int
     {
         return random_int(1, $maxId);
+    }
+
+    /**
+     * Retourne un role aléatoire
+     * @return array
+     * @throws \Exception
+     */
+    public function randomRoles()
+    {
+        $roles = ['ROLE_USER', 'ROLE_ADMIN'];
+        return [ $roles[array_rand($roles)] ];
     }
 }

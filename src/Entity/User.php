@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity("email")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -21,24 +24,24 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=4)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
-    private $login;
+    private $email;
 
     /**
-     * @ORM\Column(type="string", length=20)
+     * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $mail;
 
     /**
      * @ORM\Column(type="boolean", options={"default":0})
@@ -77,15 +80,9 @@ class User
         return $this->id;
     }
 
-    public function getLogin(): ?string
+    public function getUsername(): ?string
     {
-        return $this->login;
-    }
-
-    public function setLogin(string $login): self
-    {
-        $this->login = $login;
-        return $this;
+        return (string) $this->email;
     }
 
     public function getPassword(): ?string
@@ -100,7 +97,28 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return array
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+        return $roles;
+    }
+
+    /**
+     * @param array $roles
+     * @return User
+     */
+    public function setRoles(array $roles): User
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    /**
+     * @return string
      */
     public function getName()
     {
@@ -119,17 +137,17 @@ class User
     /**
      * @return mixed
      */
-    public function getMail()
+    public function getemail()
     {
-        return $this->mail;
+        return $this->email;
     }
 
     /**
-     * @param mixed $mail
+     * @param mixed $email
      */
-    public function setMail($mail): self
+    public function setemail($email): self
     {
-        $this->mail = $mail;
+        $this->email = $email;
         return $this;
     }
 
@@ -244,6 +262,22 @@ class User
         }
 
         return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt()
+    {
+        // not needed for apps that do not check user passwords
+    }
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 
     public function __toString()

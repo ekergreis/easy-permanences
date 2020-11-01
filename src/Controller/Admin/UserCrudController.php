@@ -24,7 +24,7 @@ class UserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Utilisateur')
             ->setEntityLabelInPlural('Utilisateurs')
-            ->setSearchFields(['login', 'name', 'mail']);
+            ->setSearchFields(['name', 'email']);
     }
 
     public function configureActions(Actions $actions): Actions
@@ -39,10 +39,9 @@ class UserCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $id = IdField::new('id')->hideOnIndex();
-        $login = TextField::new('login', 'Code accès');
+        $email = TextField::new('email', 'E-Mail');
         $password = TextField::new('password', 'Mot de passe');
         $nom = TextField::new('name', 'Nom');
-        $mail = TextField::new('mail');
         $animRegulier = BooleanField::new('animRegulier', 'Animateur Réguliers');
         // $animGroup = AssociationField::new('anim_group');
         $permanences = AssociationField::new('permanences', 'Nb Permanences');
@@ -51,13 +50,13 @@ class UserCrudController extends AbstractCrudController
 
 
         if (Crud::PAGE_INDEX === $pageName) {
-            return [$id, $login, $nom, $mail, $animRegulier, $permanences];
+            return [$id, $nom, $email, $animRegulier, $permanences];
         } elseif (Crud::PAGE_DETAIL === $pageName) {
-            return [$id, $login, $password, $nom, $mail, $animRegulier, $permanences];
+            return [$id, $email, $password, $nom, $animRegulier, $permanences];
         } elseif (Crud::PAGE_NEW === $pageName) {
-            return [$login, $password, $nom, $mail, $animRegulier];
+            return [$email, $password, $nom, $animRegulier];
         } elseif (Crud::PAGE_EDIT === $pageName) {
-            return [$login, $password, $nom, $mail, $animRegulier];
+            return [$email, $password, $nom, $animRegulier];
         }
         return [];
     }
