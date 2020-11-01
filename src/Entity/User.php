@@ -137,7 +137,7 @@ class User implements UserInterface
     /**
      * @return mixed
      */
-    public function getemail()
+    public function getEmail()
     {
         return $this->email;
     }
@@ -145,7 +145,7 @@ class User implements UserInterface
     /**
      * @param mixed $email
      */
-    public function setemail($email): self
+    public function setEmail($email): self
     {
         $this->email = $email;
         return $this;
@@ -270,6 +270,7 @@ class User implements UserInterface
     public function getSalt()
     {
         // not needed for apps that do not check user passwords
+        return null;
     }
     /**
      * @see UserInterface

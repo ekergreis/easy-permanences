@@ -2,14 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0e838cde-003f-493e-aaec-e1fcdacd6d6a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/AccessDeniedHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Security/AppCustomAuthenticator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fixtures/user.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/fixtures/user.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/AffectUserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/AffectUserCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/Admin/UserCrudController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/Admin/UserCrudController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/Faker/CustomProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/Faker/CustomProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20201024121939.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Migrations/Version20201024121939.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Migrations/Version20201101163805.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +208,7 @@
       <workItem from="1603636267974" duration="1523000" />
       <workItem from="1604225380519" duration="5209000" />
       <workItem from="1604231525760" duration="3170000" />
-      <workItem from="1604246371418" duration="3247000" />
+      <workItem from="1604246371418" duration="3669000" />
     </task>
     <servers />
   </component>
@@ -284,9 +288,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="807" y="222" key="RollbackChangesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604232677765" />
-    <state x="667" y="253" width="1100" height="775" key="find.popup" timestamp="1604228253998">
+    <state x="667" y="253" width="1100" height="775" key="find.popup" timestamp="1604249966255">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="667" y="253" width="1100" height="775" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604228253998" />
+    <state x="667" y="253" width="1100" height="775" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1604249966255" />
   </component>
 </project>
