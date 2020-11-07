@@ -53,16 +53,18 @@ class Affectation
         $entityChangeSet = $uow->getEntityChangeSet($user);
 
         // Chargement de l'ancien groupe
-        $oldGroupToRemove = $entityChangeSet['group'][0];
-        // Si le user vient d'être passé en animateur régulier
-        if (!empty($entityChangeSet['anim_regulier']) && $entityChangeSet['anim_regulier'][1]==false) {
-            $oldGroupToRemove = $user->getGroup();
-        }
+        if (!empty($entityChangeSet['group'])) {
+            $oldGroupToRemove = $entityChangeSet['group'][0];
+            // Si le user vient d'être passé en animateur régulier
+            if (!empty($entityChangeSet['anim_regulier']) && $entityChangeSet['anim_regulier'][1] == false) {
+                $oldGroupToRemove = $user->getGroup();
+            }
 
-        if (!empty($oldGroupToRemove)) {
-            // Recherche des permanences de l'ancien group du user
-            foreach ($oldGroupToRemove->getPermanences() as $permanence) {
-                $this->removeUserPermanence($user, $permanence);
+            if (!empty($oldGroupToRemove)) {
+                // Recherche des permanences de l'ancien group du user
+                foreach ($oldGroupToRemove->getPermanences() as $permanence) {
+                    $this->removeUserPermanence($user, $permanence);
+                }
             }
         }
     }

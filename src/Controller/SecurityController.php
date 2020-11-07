@@ -3,12 +3,19 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractController
 {
+    private $config;
+    public function __construct(ParameterBagInterface $parameterBag)
+    {
+        $this->config = $parameterBag->get('app');
+    }
+
     /**
      * @Route("/login", name="app_login")
      */
@@ -23,7 +30,12 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'titre' => $this->config['titre'],
+            'infos_connexion' => $this->config['infos_connexion'],
+        ]);
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Group;
 use App\Entity\Permanence;
 use App\Entity\User;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use Symfony\Component\HttpFoundation\Response;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -32,6 +33,14 @@ class DashboardController extends AbstractDashboardController
             ->setTitle('Configuration Easy Permanences');
     }
 
+    /*
+    // Surcharge propriétés CSS
+    public function configureAssets(): Assets
+    {
+        return Assets::new()->addCssFile('css/admin.css');
+    }
+     */
+
     public function configureCrud(): Crud
     {
         return Crud::new();
@@ -41,7 +50,8 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-user', User::class);
         yield MenuItem::linkToCrud('Groupes', 'fas fa-users', Group::class);
-        yield MenuItem::linkToCrud('Animateurs réguliers', 'fas fa-star', User::class)->setController(AffectUserCrudController::class);
+        yield MenuItem::linkToCrud('Animateurs réguliers', 'fas fa-star', User::class)
+            ->setController(AffectUserCrudController::class);
         yield MenuItem::linkToCrud('Permanences', 'fas fa-calendar', Permanence::class);
     }
 }

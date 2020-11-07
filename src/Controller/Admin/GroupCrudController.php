@@ -34,7 +34,8 @@ class GroupCrudController extends AbstractCrudController
             ->setEntityLabelInSingular('Groupe')
             ->setEntityLabelInPlural('Groupes')
             ->setPageTitle('index', '%entity_label_plural%')
-            ->setSearchFields(null);
+            ->setSearchFields(null)
+            ->setDefaultSort(['name'=>'ASC']);;
     }
 
     public function configureFields(string $pageName): iterable

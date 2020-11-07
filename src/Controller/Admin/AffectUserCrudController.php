@@ -17,6 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Filter\BooleanFilter;
+use EasyCorp\Bundle\EasyAdminBundle\Filter\EntityFilter;
 
 class AffectUserCrudController extends AbstractCrudController
 {
@@ -30,7 +31,15 @@ class AffectUserCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Utilisateur / Groupe')
             ->setEntityLabelInPlural('Utilisateurs / Groupes')
-            ->setSearchFields(['nom', 'email']);
+            ->setSearchFields(['name', 'email'])
+            ->setDefaultSort(['group.name'=>'ASC', 'name'=>'ASC']);
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('group')
+            ;
     }
 
     public function configureActions(Actions $actions): Actions
@@ -50,7 +59,7 @@ class AffectUserCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $qb = parent::createIndexQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        $qb->where('entity.animRegulier = 1');
+        $qb->andWhere('entity.animRegulier = 1');
         return $qb;
     }
 
@@ -59,9 +68,9 @@ class AffectUserCrudController extends AbstractCrudController
         // $id = IntegerField::new('id', 'ID');
         $email = TextField::new('email', 'E-Mail');
         // $password = TextField::new('password');
-        $nom = TextField::new('name', 'nom');
+        $nom = TextField::new('name', 'Nom');
         // $animRegulier = Field::new('animRegulier', 'Animateur régulier');
-        $group = AssociationField::new('group');
+        $group = AssociationField::new('group', 'Groupe');
         $permanences = AssociationField::new('permanences', 'Nb Permanences');
         // $echanges = AssociationField::new('echanges');
         // $echangePropos = AssociationField::new('echangePropos');

@@ -1,23 +1,24 @@
 # Documenté dans App\DependencyInjection\Configuration
 app:
+  titre: "Planning des animateurs"
+  infos_connexion: "Le code utilisateur correspond aux 4 premières lettres du nom de famille de votre enfant.<br/>
+      Le code d'accès correspond au jour et au mois de naissance de votre enfant.<br/>
+      Par exemple: Les parents de Sonia Dupont née le 02 janvier 2012 peuvent se connecter avec le code utilisateur \"DUPO\" et le code d'accès \"0201\".<br/><br/>
+      <b>Pour tout problème de connexion ou d'utilisation, vous pouvez nous contacter à l'adresse <a href=\"site@aleaubebe.net\">site@aleaubebe.net</a></b>"
   jour: 6
   seuil_alert_animateur: 6
   seuil_anim_ok: 7
   equilibrage_pourcent_par_groupe: 0.4
-  permanences:
+  decoupage_permanence:
     groupe1:
       name: "1er groupe"
       horaire: "9h à 9h45"
-      couleur: "Navy"
     groupe2:
       name: "2ème groupe"
       horaire: "9h45 à 10h30"
-      couleur: "#C9001A"
     groupe3:
       name: "3ème groupe"
       horaire: "10h30 à 11h15"
-      couleur: "#417324"
     groupe4:
       name: "4ème groupe"
       horaire: "11h15 à 12h"
-      couleur: "#FF5900"

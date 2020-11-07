@@ -19,6 +19,14 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder->getRootNode()
             ->children()
+                ->scalarNode('titre') // Titre à afficher sur l'interface
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+                ->scalarNode('infos_connexion') // Détail du mode connexion affiché sur la page login
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
                 ->scalarNode('jour') // Jour des permanences dimanche = 0 / samedi = 6
                     ->isRequired()
                     ->cannotBeEmpty()
@@ -35,18 +43,14 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
-                ->arrayNode('permanences')
+                ->arrayNode('decoupage_permanence') // Groupes gérés pendant une permanence
                     ->arrayPrototype()
                         ->children()
-                            ->scalarNode('name') // Nom du groupe d'animateur
+                            ->scalarNode('name') // Nom du groupe
                                 ->isRequired()
                                 ->cannotBeEmpty()
                             ->end()
-                            ->scalarNode('horaire') // Horaire du groupe d'animateur
-                                ->isRequired()
-                                ->cannotBeEmpty()
-                            ->end()
-                            ->scalarNode('couleur') // Couleur  attribuée au groupe d'animateur
+                            ->scalarNode('horaire') // Horaire du groupe
                                 ->isRequired()
                                 ->cannotBeEmpty()
                             ->end()

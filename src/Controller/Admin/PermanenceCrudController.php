@@ -23,7 +23,8 @@ class PermanenceCrudController extends AbstractCrudController
         return $crud
             ->setEntityLabelInSingular('Permanence')
             ->setEntityLabelInPlural('Permanences')
-            ->setSearchFields(null);
+            ->setSearchFields(null)
+            ->setDefaultSort(['date'=>'ASC']);;
     }
 
     public function configureActions(Actions $actions): Actions
