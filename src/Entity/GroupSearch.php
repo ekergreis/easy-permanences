@@ -10,7 +10,6 @@ class GroupSearch
 
     /**
      * GroupSearch constructor.
-     * @param bool $filterGroup
      */
     public function __construct()
     {
