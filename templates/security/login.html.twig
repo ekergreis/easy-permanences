@@ -15,7 +15,7 @@
             </div>
         {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal text-center">{{ titre }}</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">{{ 'titre'|trans }}</h1>
         <label for="inputEmail">E-mail</label>
         <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
         <label for="inputPassword">Mot de passe</label>
@@ -40,7 +40,7 @@
             Connexion
         </button>
 
-        <p>{{ infos_connexion | raw  }}</p>
+        <p>{{ 'infos_connexion'|trans|raw  }}</p>
     </form>
 </div>
 {% endblock %}

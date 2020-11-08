@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\GroupSearch;
 use App\Entity\Permanence;
 use App\Form\GroupSearchType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +14,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
     private $config;
-    public function __construct(ParameterBagInterface $parameterBag)
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+    /**
+     * @var ParameterBagInterface
+     */
+    private $parameterBag;
+
+    public function __construct(EntityManagerInterface $em, ParameterBagInterface $parameterBag)
     {
         $this->config = $parameterBag->get('app');
+        $this->em = $em;
     }
 
     /**
@@ -23,24 +34,55 @@ class MainController extends AbstractController
      */
     public function index(Request $request)
     {
-        // Constitution tableau des permanences (multi-dimension une ligne pour un mois)
-
-        // Recherche permanences assurées par l'utilisateur (par défaut)
-        // Conservation pour affichage date prochaine permanence et nb permanences assurées
-
-
+        // Recupération filtre sur affichage permanences par utilisateur ou par groupe
         $groupSearch = new GroupSearch();
         $form = $this->createForm(GroupSearchType::class, $groupSearch);
         $form->handleRequest($request);
-        if($groupSearch->isFilterGroup()) {
-            // Si sélection d'affichage par groupe constitution tableau groupe
 
+        // Constitution tableau des permanences (multi-dimension une ligne par mois et une colonne par jour)
+
+        // Recherche permanences assurées par l'utilisateur et par les groupes
+        // Conservation pour affichage date prochaine permanence et nb permanences assurées
+        $arrayPermanence = [];
+        $nextPermanence = null;
+        $nbPermanence = 0;
+
+        $user = $this->getUser();
+        $permanences = $this->em
+            ->getRepository(Permanence::class)
+            ->findBy([], ['date' => 'ASC']);
+        // Parcours de l'ensemble des permanences
+        foreach($permanences as $permanence) {
+            // Initialisation 1ère dimension tableau pour un mois (affichage ligne)
+            $month = $permanence->getDate()->format('m-Y');
+            // Initialisation 2ème dimension tableau pour un jour de permanence (affichage colonne)
+            $day = $permanence->getDate()->format('d');
+            // Initialisation tableau pour permanence
+            $arrayPermanence[$month][$day] = [
+                'date' => $permanence->getDate(),
+                'user' => false,
+                'group' => $permanence->getGroup(),
+            ];
+
+            // Parcours des utilisateurs liés à la permanence
+            foreach ($permanence->getUsers() as $userPermanence) {
+                // Si l'utilisateur connecté et affecté à la permanence
+                if($user == $userPermanence) {
+                    $nextPermanence = $permanence->getDate();
+                    $nbPermanence++;
+                    $arrayPermanence[$month][$day]['user'] = true;
+                }
+            }
         }
 
+        // Affichage view
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
-            'titre' => $this->config['titre'],
             'form' => $form->createView(),
+            'group_search' => $groupSearch->isFilterGroup(),
+            'array_permanence' => $arrayPermanence,
+            'next_permanence' => $nextPermanence,
+            'nb_permanence' => $nbPermanence,
         ]);
     }
 

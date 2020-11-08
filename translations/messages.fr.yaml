@@ -1,2 +1,7 @@
+titre: "Planning des animateurs"
+infos_connexion: "Le code utilisateur correspond aux 4 premières lettres du nom de famille de votre enfant.<br/>
+    Le code d'accès correspond au jour et au mois de naissance de votre enfant.<br/>
+    Par exemple: Les parents de Sonia Dupont née le 02 janvier 2012 peuvent se connecter avec le code utilisateur \"DUPO\" et le code d'accès \"0201\".<br/><br/>
+    <b>Pour tout problème de connexion ou d'utilisation, vous pouvez nous contacter à l'adresse <a href=\"site@aleaubebe.net\">site@aleaubebe.net</a></b>"
 groupe:
   valid: Enregistrer

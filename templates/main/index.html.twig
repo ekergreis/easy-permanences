@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ titre }}{% endblock %}
+{% block title %}{{ 'titre'|trans }}{% endblock %}
 
 {% block body %}
 
@@ -8,15 +8,22 @@
     {{  form_start(form) }}
     <div class="form-row align-items-end">
         <div class="col">
-            {{ form_row(form.filterGroup) }}
-        </div>
-        <div class="col">
-            <div class="form-group">
-                <button class="btn btn-primary">Rechercher</button>
-            </div>
+            {{ form_widget(form.filterGroup) }}
         </div>
     </div>
     {{  form_end(form) }}
 </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script language="JavaScript">
+    $(document).ready(function() {
+        $('#group_search_filterGroup').change(function(){
+            this.form.submit();
+        });
+    });
+</script>
 
 {% endblock %}

@@ -19,14 +19,6 @@ class Configuration implements ConfigurationInterface
 
         $treeBuilder->getRootNode()
             ->children()
-                ->scalarNode('titre') // Titre à afficher sur l'interface
-                    ->isRequired()
-                    ->cannotBeEmpty()
-                ->end()
-                ->scalarNode('infos_connexion') // Détail du mode connexion affiché sur la page login
-                    ->isRequired()
-                    ->cannotBeEmpty()
-                ->end()
                 ->scalarNode('jour') // Jour des permanences dimanche = 0 / samedi = 6
                     ->isRequired()
                     ->cannotBeEmpty()
