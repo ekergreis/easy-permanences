@@ -22,21 +22,24 @@ class Affectation
      * Les affectations de permanences des users de l'ancien groupe sont supprimés
      * si un changement de groupe est validé sur une permanence
      * @param Permanence $permanence
+     * @param Group $oldGroup
      */
-    public function initPermanences(Permanence $permanence): void
+    public function initPermanences(Permanence $permanence, $oldGroup = null): void
     {
-        $uow = $this->em->getUnitOfWork();
-        $uow->computeChangeSets();
-        $entityChangeSet = $uow->getEntityChangeSet($permanence);
-
-        if (!empty($entityChangeSet['group'])) {
+        if (empty($oldGroup)) {
             // Chargement de l'ancien groupe
-            $oldGroup = $entityChangeSet['group'][0];
-            if ($oldGroup) {
-                // Recherche des users de l'ancien group de la permanence
-                foreach ($oldGroup->getUsers() as $user) {
-                    $this->removeUserPermanence($user, $permanence);
-                }
+            $uow = $this->em->getUnitOfWork();
+            $uow->computeChangeSets();
+            $entityChangeSet = $uow->getEntityChangeSet($permanence);
+            if (!empty($entityChangeSet['group'])) {
+                $oldGroup = $entityChangeSet['group'][0];
+            }
+        }
+
+        if ($oldGroup) {
+            // Recherche des users de l'ancien group de la permanence
+            foreach ($oldGroup->getUsers() as $user) {
+                $this->removeUserPermanence($user, $permanence);
             }
         }
     }
@@ -45,26 +48,28 @@ class Affectation
      * Les affectations de permanences d'un user sont supprimés pour son ancien groupe
      * si un changement de groupe est validé sur un user
      * @param User $user
+     * @param Group $oldGroupToRemove
      */
-    public function initUserGroupPermanences(User $user): void
+    public function initUserGroupPermanences(User $user, $oldGroupToRemove = null): void
     {
-        $uow = $this->em->getUnitOfWork();
-        $uow->computeChangeSets();
-        $entityChangeSet = $uow->getEntityChangeSet($user);
-
-        // Chargement de l'ancien groupe
-        if (!empty($entityChangeSet['group'])) {
-            $oldGroupToRemove = $entityChangeSet['group'][0];
-            // Si le user vient d'être passé en animateur régulier
-            if (!empty($entityChangeSet['anim_regulier']) && $entityChangeSet['anim_regulier'][1] == false) {
-                $oldGroupToRemove = $user->getGroup();
-            }
-
-            if (!empty($oldGroupToRemove)) {
-                // Recherche des permanences de l'ancien group du user
-                foreach ($oldGroupToRemove->getPermanences() as $permanence) {
-                    $this->removeUserPermanence($user, $permanence);
+        if(empty($oldGroupToRemove)) {
+            $uow = $this->em->getUnitOfWork();
+            $uow->computeChangeSets();
+            $entityChangeSet = $uow->getEntityChangeSet($user);
+            // Chargement de l'ancien groupe
+            if (!empty($entityChangeSet['group'])) {
+                $oldGroupToRemove = $entityChangeSet['group'][0];
+                // Si le user vient d'être passé en animateur régulier
+                if (!empty($entityChangeSet['anim_regulier']) && $entityChangeSet['anim_regulier'][1] == false) {
+                    $oldGroupToRemove = $user->getGroup();
                 }
+            }
+        }
+
+        if (!empty($oldGroupToRemove)) {
+            // Recherche des permanences de l'ancien group du user
+            foreach ($oldGroupToRemove->getPermanences() as $permanence) {
+                $this->removeUserPermanence($user, $permanence);
             }
         }
     }
